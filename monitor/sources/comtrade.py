@@ -5,9 +5,9 @@ Se usan "espejos" del mismo flujo físico:
   * Colombia exporta carbón a Perú     -> valor FOB en origen
 La diferencia CIF - FOB es el flete + seguro implícito de la ruta.
 
-Sin clave se usa el endpoint público "preview" (limitado pero suficiente);
-con COMTRADE_API_KEY (gratis en comtradedeveloper.un.org) se usa el endpoint
-completo. Los datos llegan con 2-4 meses de rezago.
+Sin clave se usa el endpoint público "preview" (un mes por consulta, más
+lento pero suficiente); con COMTRADE_API_KEY (gratis en
+comtradedeveloper.un.org) se usa el endpoint completo, 12 meses por consulta. Los datos llegan con 2-4 meses de rezago.
 """
 from __future__ import annotations
 
@@ -90,7 +90,8 @@ def fetch(months: int = 24) -> pd.DataFrame:
     if key:
         s.headers["Ocp-Apim-Subscription-Key"] = key
     periods = _periods(months)
-    chunks = [periods[i:i + 12] for i in range(0, len(periods), 12)]
+    size = 12 if key else 1          # el endpoint público "preview" acepta sólo 1 periodo por consulta
+    chunks = [periods[i:i + size] for i in range(0, len(periods), size)]
     out = []
     for serie, q in QUERIES.items():
         records: list[dict] = []
