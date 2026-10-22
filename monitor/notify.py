@@ -13,11 +13,12 @@ log = logging.getLogger(__name__)
 
 
 def summary_text(res: Result, report_url: str | None = None) -> str:
-    lines = [f"📊 Monitor Conchán — datos a {res.meta.get('ultimo_mes', '—')}"]
+    lines = [f"📊 Monitor carbón Conchán — datos a {res.meta.get('ultimo_mes', '—')}"]
     if not res.monthly.empty:
         last = res.monthly.iloc[-1]
         for label, col in [("Carbón puesto en planta", "carbon_landed"),
-                           ("Escoria puesta en planta", "escoria_landed"),
+                           ("Colombia FOB", "carbon_col_fob"),
+                           ("API2 CIF ARA", "carbon_api2_cif_ara"),
                            ("Newcastle FOB", "carbon_newcastle_fob")]:
             v = last.get(col)
             if v is not None and pd.notna(v):

@@ -1,11 +1,11 @@
-"""Cotizaciones propias (proveedores, brokers, Argus/Platts) cargadas a mano.
+"""Cotizaciones propias de carbón (proveedores, brokers, Argus/Platts) cargadas a mano.
 
 data/manual/cotizaciones.csv
     fecha,material,base,precio_usd_t,poder_calorifico_kcal_kg,proveedor,comentario
     2026-10-15,carbon,FOB,118.5,6000,Proveedor X,Puerto Nuevo
 data/manual/fletes.csv
     fecha,material,flete_usd_t,tipo_buque,fuente,comentario
-    2026-10-10,escoria,41,Supramax,Broker Y,Kashima-Conchán
+    2026-10-10,carbon,25,Supramax,Broker Y,Puerto Nuevo-Conchán
 
 Las cotizaciones de carbón se normalizan al poder calorífico de referencia del
 índice para que sean comparables con Newcastle.
@@ -24,7 +24,7 @@ log = logging.getLogger(__name__)
 
 def fetch(manual_dir: Path, cfg: dict) -> pd.DataFrame:
     out = []
-    cv_ref = cfg["materiales"]["carbon"]["poder_calorifico_ref_kcal_kg"]
+    cv_ref = cfg["carbon"]["poder_calorifico_ref_kcal_kg"]
 
     q_path = manual_dir / "cotizaciones.csv"
     if q_path.exists():

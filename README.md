@@ -1,79 +1,94 @@
-# Monitor de insumos críticos — Puerto Conchán
+# Monitor de carbón importado — Puerto Conchán
 
-Bot/agente que sigue cada semana la evolución de precios de dos insumos críticos
-importados por **Puerto Conchán (Lima, Perú)**:
+Bot/agente que sigue cada semana la evolución del precio del **carbón térmico
+colombiano** (HS 2701.12) importado por **Puerto Conchán (Lima, Perú)**, un insumo
+crítico de la operación.
 
-| Insumo | Origen | Partida |
-|---|---|---|
-| Carbón térmico | Colombia | HS 2701.12 |
-| Escoria granulada de alto horno (GBFS) | Japón | HS 2618.00 |
-
-Combina **información pública gratuita** con tus **cotizaciones propias**, arma el
-**costo puesto en planta** (FOB → flete → CIF → planta, en USD y PEN), calcula
-**ratios** de seguimiento, dispara **alertas** y, si configuras una API key de Claude,
-un **agente analista** redacta el comentario de mercado con noticias públicas recientes.
+Combina **información pública gratuita**, los **CSV que descargues de Investing.com**
+y tus **cotizaciones propias**. Con eso arma el **costo puesto en planta**
+(FOB → flete → CIF → planta, en USD, PEN y USD/GJ), calcula **ratios** de
+seguimiento y dispara **alertas**. Si configuras una API key de Claude, un
+**agente analista** redacta el comentario de mercado con noticias públicas recientes.
 
 👉 Reporte vigente: [`reports/ultimo_reporte.md`](reports/ultimo_reporte.md)
 
 ---
 
-## Fuentes públicas
+## Fuentes
 
 | Fuente | Qué aporta | Frecuencia / rezago |
 |---|---|---|
-| **FRED / IMF** (`PCOALAUUSDM`, `MCOILBRENTEU`, `EXJPUS`, `COLCCUSMA02STM`) | Carbón Newcastle FOB (benchmark), Brent (proxy de bunker), USD/JPY, USD/COP | Mensual, ~1 mes |
+| **Investing.com** (CSV manual) | Futuros API2 CIF Rotterdam, Newcastle, API4 Richards Bay | Diario → promedio mensual; al día |
+| **FRED / IMF** (`PCOALAUUSDM`, `MCOILBRENTEU`, `COLCCUSMA02STM`) | Newcastle FOB (promedio mensual oficial), Brent (proxy de bunker), USD/COP | Mensual, ~1 mes |
 | **Banco Mundial – Pink Sheet** | Carbón Australia, Sudáfrica (y Colombia si se publica), Brent | Mensual, ~1 mes |
 | **BCRP** (`PD04638PD`) | Tipo de cambio interbancario PEN/USD | Diario → promedio mensual |
-| **UN Comtrade** | Valores unitarios reales: CIF de Perú (importaciones desde Colombia/Japón, clinker), FOB de Colombia y Japón (exportaciones a Perú y al mundo), volúmenes | Mensual, 2–4 meses |
+| **UN Comtrade** | Precios reales por tonelada: CIF de Perú (carbón de Colombia y de todo origen), FOB de Colombia (a Perú y al mundo), volúmenes | Mensual, 2–4 meses |
 | **Tus cotizaciones** (`data/manual/*.csv`) | Precios de proveedores/brokers/Argus/Platts y fletes cotizados | Cuando las cargues |
 
-> No existe una fuente pública gratuita en tiempo real para el API2/Colombia FOB ni para
-> la escoria japonesa. Por eso el modelo **calibra ratios** con los datos de comercio
-> exterior (reales pero rezagados) y los aplica a los benchmarks que sí son oportunos.
+> No existe una fuente pública gratuita y en tiempo real del FOB Colombia. Por eso el
+> modelo **calibra ratios** con los datos de comercio exterior (reales pero con
+> retraso) y los aplica a los índices que sí están al día (API2 de Investing, Newcastle).
+
+### Cargar datos de Investing.com
+
+Investing no tiene API pública y sus términos prohíben la extracción automática, así que
+el bot **no** entra a la web: solo lee los CSV que tú descargas.
+
+1. En Investing, abre el futuro (p. ej. *Rotterdam Coal Futures* / API2) → **Datos
+   históricos** → elige el rango → **Descargar**. Necesitas una cuenta gratuita.
+2. Guarda el archivo en `data/manual/investing/`. El nombre debe contener una palabra
+   clave: `api2` o `rotterdam`, `newcastle`, `api4` o `richards`. Es lo que
+   descarga Investing por defecto (p. ej. *Rotterdam Coal Futures Historical Data.csv*).
+3. Haz push. El workflow se dispara solo y regenera el reporte.
+
+Se aceptan los formatos del sitio en inglés (`10/21/2026`, `1,234.50`) y en español
+(`21.10.2026`, `1.234,50`). Puedes reemplazar el archivo por uno más largo cuando quieras;
+el histórico se actualiza por mes sin duplicar.
 
 ## Metodología
 
 **Carbón Colombia FOB** (en orden de prioridad)
 1. Tu cotización FOB (normalizada a la kcal de referencia).
-2. Valor unitario FOB de exportaciones Colombia→Perú (o →mundo) de Comtrade.
+2. Precio FOB por tonelada de las exportaciones Colombia→Perú (o →mundo) en Comtrade.
 3. Pink Sheet “Coal, Colombian”, si existe.
-4. **Nowcast**: Newcastle × *ratio Colombia/Newcastle*, donde el ratio es la mediana de
-   los últimos 12 meses observados (si no hay datos usa `ratio_colombia_newcastle_default`).
+4. **Nowcast**: `índice × ratio Colombia/índice`. El índice es **API2** (el carbón
+   colombiano es del Atlántico) o Newcastle si no hay API2. El ratio es la mediana
+   de los últimos 12 meses donde hay dato de Comtrade y del índice; si no hay, se usa
+   el valor por defecto de la config.
 
 Se ajusta a la especificación del contrato: `FOB_spec = FOB_ref × kcal_spec / kcal_ref`.
 
-**Escoria Japón FOB**: tu cotización → FOB Japón→Perú (Comtrade) → FOB Japón→mundo →
-arrastre del último dato → valor por defecto de la config.
-
-**Flete**: `flete_base × (Brent / Brent_base)^elasticidad`, recalibrado con el flete
-implícito de Comtrade (`CIF Perú − FOB origen` del mismo flujo). Tu cotización de flete
-siempre tiene prioridad.
+**Flete Colombia→Conchán** (vía Canal de Panamá):
+`flete_base × (Brent / Brent_base)^elasticidad`, recalibrado con el flete implícito de
+Comtrade (`CIF Perú − FOB Colombia` del mismo flujo). Tu cotización de flete siempre
+tiene prioridad.
 
 **Costo puesto en planta**
 ```
 CIF     = (FOB + flete) × (1 + seguro%)
 Landed  = CIF × (1 + arancel% + agente%) + descarga + almacenaje + transporte a planta
 PEN/t   = Landed × TC BCRP
+USD/GJ  = Landed / (kcal_spec × 4.1868e-3)
 ```
-El IGV (18%) es crédito fiscal y no se suma al costo.
+El IGV (18%) es crédito fiscal: se muestra como desembolso de caja, no como costo.
 
 ### Ratios que se monitorean
 
 | Ratio | Para qué sirve |
 |---|---|
-| Carbón Colombia FOB / Newcastle | Descuento/prima del carbón colombiano vs. el benchmark del Pacífico |
+| Colombia FOB / API2 | Descuento del carbón colombiano frente a su índice natural (Atlántico) |
+| Colombia FOB / Newcastle | Competitividad frente al carbón del Pacífico (Australia/Indonesia) |
+| API2 − Newcastle | Arbitraje Atlántico/Pacífico: si se abre, conviene comparar orígenes |
 | Carbón vs Brent (USD/GJ) | Competitividad del carbón frente a combustibles líquidos |
-| Carbón USD/GJ y USD/Gcal | Costo energético real según tu spec |
-| Flete / CIF (carbón y escoria) | Exposición al mercado de fletes; en la escoria suele ser > 50% |
-| Escoria CIF / Clinker CIF importado | Economía de sustitución de clinker por escoria (< 1 favorable) |
-| Escoria landed / Carbón landed | Relación de costos entre ambos insumos |
-| CIF modelo / CIF Comtrade Perú | Control de calidad del modelo vs. lo que efectivamente pagó el mercado peruano |
+| Flete / CIF | Exposición al mercado de fletes y al Canal de Panamá |
+| CIF modelo / CIF Comtrade Perú | Control: el modelo frente a lo que realmente pagó el mercado peruano |
+| Participación de Colombia en importaciones de Perú | Concentración de la oferta |
 
 Para cada serie se calcula: último valor, variación mensual y anual, promedios 3m/12m,
 rango y z-score de 24 meses.
 
 ### Alertas (config → `alertas`)
-- Variación mensual mayor a `variacion_mensual_pct`.
+- Variación mensual mayor a `variacion_mensual_pct` (API2, Newcastle, FOB, flete, landed, TC, Brent).
 - Valor fuera de rango histórico (|z| ≥ `zscore`).
 - Costo puesto en planta por encima de `presupuesto_landed_usd_t`.
 
@@ -90,25 +105,27 @@ python -m pytest -q             # pruebas
 
 ### Cargar tus cotizaciones
 Agrega filas a `data/manual/cotizaciones.csv` (bases FOB, CFR o CIF) y
-`data/manual/fletes.csv`. Al hacer push de esos archivos, GitHub Actions regenera el
-reporte automáticamente.
+`data/manual/fletes.csv`:
 
 ```csv
 fecha,material,base,precio_usd_t,poder_calorifico_kcal_kg,proveedor,comentario
 2026-10-15,carbon,FOB,118.5,6000,Proveedor X,Puerto Nuevo
-2026-10-15,escoria,FOB,26,,Proveedor Y,Kashima
+```
+```csv
+fecha,material,flete_usd_t,tipo_buque,fuente,comentario
+2026-10-10,carbon,25,Supramax,Broker Y,Puerto Nuevo-Conchán
 ```
 
 ### Ajustar supuestos
 Todo está en [`config/config.yaml`](config/config.yaml): kcal de tu contrato, costos
-portuarios en Conchán, fletes base, consumos anuales, presupuestos y umbrales de
-alerta. Los valores marcados con **AJUSTAR** son supuestos iniciales.
+portuarios en Conchán, flete base, consumo anual, presupuesto, índice preferido y
+umbrales de alerta. Los valores marcados con **AJUSTAR** son supuestos iniciales.
 
 ## Automatización (GitHub Actions)
 
 El workflow [`actualizar.yml`](.github/workflows/actualizar.yml) corre **cada lunes
-07:17 (Lima)**, al cargar cotizaciones nuevas y manualmente desde *Actions → Run
-workflow*. Guarda el histórico y el reporte en el repositorio (quedan versionados).
+07:17 (Lima)**, al subir cotizaciones o CSV de Investing, y manualmente desde
+*Actions → Run workflow*. Guarda el histórico y el reporte en el repositorio.
 
 Secretos opcionales (*Settings → Secrets and variables → Actions*):
 
@@ -125,8 +142,9 @@ Sin ningún secreto el bot funciona igual con las fuentes públicas.
 ```
 config/config.yaml          supuestos, umbrales y fuentes
 data/manual/                tus cotizaciones y fletes
+data/manual/investing/      CSV descargados de Investing.com
 data/historico/series.csv   histórico (generado)
-monitor/sources/            conectores: fred, worldbank, bcrp, comtrade, manual
+monitor/sources/            conectores: fred, worldbank, bcrp, comtrade, investing, manual
 monitor/analytics.py        costo puesto en planta, ratios, indicadores y alertas
 monitor/agent.py            agente analista (Claude)
 monitor/report.py           reporte Markdown + gráficos
@@ -134,8 +152,7 @@ reports/                    reporte vigente, historial, CSV del modelo (generado
 ```
 
 ## Ideas para extender
-- SUNAT (ADUANET): DUAs de importación por Conchán (precio real por embarque).
+- SUNAT (ADUANET): DUAs de importación de carbón por Conchán (precio real por embarque).
 - ANM Colombia: precio base de liquidación de regalías del carbón (trimestral).
-- Índices de fletes (Baltic Supramax/Handysize) y bunker VLSFO Panamá/Singapur si
-  dispones de suscripción.
+- Índices de fletes (Baltic Supramax/Panamax) y bunker VLSFO Panamá si dispones de suscripción.
 - Restricciones de calado del Canal de Panamá (ACP) como alerta de flete.

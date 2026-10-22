@@ -16,7 +16,6 @@ URL = "https://fred.stlouisfed.org/graph/fredgraph.csv"
 SERIES = {
     "PCOALAUUSDM": ("carbon_newcastle_fob", "USD/t"),       # IMF: Australia thermal coal, FOB Newcastle
     "MCOILBRENTEU": ("brent", "USD/bbl"),                   # Brent Europa, promedio mensual
-    "EXJPUS": ("fx_jpy_usd", "JPY por USD"),                # Yen por dólar, promedio mensual
     "COLCCUSMA02STM": ("fx_cop_usd", "COP por USD"),        # OCDE: peso colombiano por dólar
 }
 

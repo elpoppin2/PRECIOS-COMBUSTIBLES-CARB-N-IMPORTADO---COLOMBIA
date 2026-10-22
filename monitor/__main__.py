@@ -14,8 +14,8 @@ from datetime import date
 import pandas as pd
 
 from . import agent, analytics, notify, report, store
-from .config import HIST_PATH, MANUAL_DIR, REPORTS_DIR, load_config
-from .sources import bcrp, comtrade, fred, manual, worldbank
+from .config import HIST_PATH, MANUAL_DIR, REPORTS_DIR, ROOT, load_config
+from .sources import bcrp, comtrade, fred, investing, manual, worldbank
 
 log = logging.getLogger("monitor")
 
@@ -28,6 +28,7 @@ def update(cfg: dict) -> pd.DataFrame:
         ("banco_mundial", lambda: worldbank.fetch(start)),
         ("bcrp", lambda: bcrp.fetch(start)),
         ("comtrade", lambda: comtrade.fetch(f.get("comtrade_meses", 24))),
+        ("investing", lambda: investing.fetch(ROOT / cfg["investing"]["carpeta"], cfg["investing"]["series"])),
         ("manual", lambda: manual.fetch(MANUAL_DIR, cfg)),
     ]
     frames = []

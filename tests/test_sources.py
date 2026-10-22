@@ -5,7 +5,7 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from monitor.sources import bcrp, comtrade, fred, manual, worldbank
+from monitor.sources import bcrp, comtrade, fred, investing, manual, worldbank
 
 FIX = Path(__file__).parent / "fixtures"
 
@@ -55,8 +55,8 @@ def test_comtrade_prefers_totals_over_breakdown():
         {**base, "customsCode": "C00", "motCode": 0, "partner2Code": 0},
         {**base, "customsCode": "C01", "motCode": 2100, "partner2Code": 0},
     ]
-    df = comtrade.parse_records(records, "jp_exp_escoria_pe_fob", "X")
-    assert df[df["serie"] == "jp_exp_escoria_pe_fob_vol_t"]["valor"].iloc[0] == pytest.approx(1000)
+    df = comtrade.parse_records(records, "co_exp_carbon_pe_fob", "X")
+    assert df[df["serie"] == "co_exp_carbon_pe_fob_vol_t"]["valor"].iloc[0] == pytest.approx(1000)
 
 
 def _pink_sheet_bytes() -> bytes:
@@ -88,12 +88,41 @@ def test_manual_quotes_normalized_to_reference_cv(tmp_path, cfg):
     (tmp_path / "cotizaciones.csv").write_text(
         "fecha,material,base,precio_usd_t,poder_calorifico_kcal_kg,proveedor,comentario\n"
         "2026-10-05,carbon,FOB,126,6300,X,\n"
-        "2026-10-20,escoria,fob,27,,Y,\n"
+        "2026-10-20,Carbon,cif,150,,Y,\n"
     )
     (tmp_path / "fletes.csv").write_text(
-        "fecha,material,flete_usd_t,tipo_buque,fuente,comentario\n2026-10-10,Escoria,41,Supramax,Z,\n"
+        "fecha,material,flete_usd_t,tipo_buque,fuente,comentario\n2026-10-10,Carbon,25,Supramax,Z,\n"
     )
     df = manual.fetch(tmp_path, cfg).set_index("serie")["valor"]
     assert df["manual_carbon_fob"] == pytest.approx(120.0)     # 126 * 6000/6300
-    assert df["manual_escoria_fob"] == 27
-    assert df["manual_flete_escoria"] == 41
+    assert df["manual_carbon_cif"] == 150
+    assert df["manual_flete_carbon"] == 25
+
+
+def test_investing_english_csv(tmp_path):
+    path = tmp_path / "Rotterdam Coal Futures Historical Data.csv"
+    path.write_text(
+        '\ufeff"Date","Price","Open","High","Low","Vol.","Change %"\n'
+        '"10/21/2026","1,104.50","110.00","112.00","109.00","","0.41%"\n'
+        '"10/20/2026","110.00","109.00","111.00","108.00","","-0.5%"\n'
+        '"09/30/2026","100.00","99.00","101.00","98.00","","1.0%"\n',
+        encoding="utf-8",
+    )
+    df = investing.fetch(tmp_path, {"rotterdam": "carbon_api2_cif_ara"}).set_index("fecha")["valor"]
+    assert df[pd.Timestamp("2026-10-01")] == pytest.approx((1104.5 + 110) / 2)
+    assert df[pd.Timestamp("2026-09-01")] == pytest.approx(100)
+
+
+def test_investing_spanish_csv(tmp_path):
+    (tmp_path / "Futuros carbón API2 - Datos históricos.csv").write_text(
+        '"Fecha","Último","Apertura","Máximo","Mínimo","Vol.","% var."\n'
+        '"21.10.2026","1.104,50","110,00","112,00","109,00","","0,41%"\n'
+        '"02.09.2026","98,25","99,00","101,00","98,00","","1,0%"\n',
+        encoding="utf-8",
+    )
+    (tmp_path / "otra cosa.csv").write_text("Fecha,Último\n21.10.2026,1\n")   # sin palabra clave: se ignora
+    df = investing.fetch(tmp_path, {"api2": "carbon_api2_cif_ara"})
+    assert set(df["serie"]) == {"carbon_api2_cif_ara"}
+    v = df.set_index("fecha")["valor"]
+    assert v[pd.Timestamp("2026-10-01")] == pytest.approx(1104.5)
+    assert v[pd.Timestamp("2026-09-01")] == pytest.approx(98.25)

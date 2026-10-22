@@ -1,8 +1,8 @@
 """UN Comtrade — valores unitarios de comercio exterior (USD/t) por flujo.
 
 Se usan "espejos" del mismo flujo físico:
-  * Perú importa desde Colombia/Japón  -> valor CIF Callao/Conchán
-  * Colombia/Japón exportan a Perú     -> valor FOB en origen
+  * Perú importa carbón desde Colombia -> valor CIF Callao/Conchán
+  * Colombia exporta carbón a Perú     -> valor FOB en origen
 La diferencia CIF - FOB es el flete + seguro implícito de la ruta.
 
 Sin clave se usa el endpoint público "preview" (limitado pero suficiente);
@@ -24,7 +24,7 @@ log = logging.getLogger(__name__)
 PREVIEW_URL = "https://comtradeapi.un.org/public/v1/preview/C/M/HS"
 DATA_URL = "https://comtradeapi.un.org/data/v1/get/C/M/HS"
 
-PERU, COLOMBIA, JAPAN, WORLD = 604, 170, 392, 0
+PERU, COLOMBIA, WORLD = 604, 170, 0
 
 # serie base -> parámetros. Para cada consulta se guardan dos series:
 #   <serie>_usd_t  (valor unitario)  y  <serie>_vol_t  (toneladas)
@@ -32,10 +32,7 @@ QUERIES = {
     "pe_imp_carbon_col_cif": dict(reporter=PERU, partner=COLOMBIA, cmd="270112", flow="M"),
     "co_exp_carbon_pe_fob": dict(reporter=COLOMBIA, partner=PERU, cmd="270112", flow="X"),
     "co_exp_carbon_mundo_fob": dict(reporter=COLOMBIA, partner=WORLD, cmd="270112", flow="X"),
-    "pe_imp_escoria_jpn_cif": dict(reporter=PERU, partner=JAPAN, cmd="261800", flow="M"),
-    "jp_exp_escoria_pe_fob": dict(reporter=JAPAN, partner=PERU, cmd="261800", flow="X"),
-    "jp_exp_escoria_mundo_fob": dict(reporter=JAPAN, partner=WORLD, cmd="261800", flow="X"),
-    "pe_imp_clinker_mundo_cif": dict(reporter=PERU, partner=WORLD, cmd="252310", flow="M"),
+    "pe_imp_carbon_mundo_cif": dict(reporter=PERU, partner=WORLD, cmd="270112", flow="M"),
 }
 
 
