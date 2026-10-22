@@ -64,6 +64,17 @@ Spec 6000 kcal/kg NAR. Ratio Colombia/API2: 0.850 (valor por defecto); Colombia/
 
 ![ratios.png](graficos/ratios.png)
 
+## Estado de las fuentes (última descarga)
+
+| Fuente | Observaciones | Estado |
+|---|---:|---|
+| fred | 0 | ⚠ FRED PCOALAUUSDM falló: respuesta inesperada: '<!doctype html>\n<html lang="en">\n<head>\n    <title>Site Maintenance / St. Louis Fed<</title>\n    <link href="https://fon'<br>FRED MCOILBRENTEU falló: respuesta inesperada: '<!doctype html>\n<html lang="en">\n<head>\n    <title>Site Maintenance / St. Louis Fed<</title>\n    <link href="https://fon'<br>FRED COLCCUSMA02STM falló: respuesta inesperada: '<!doctype html>\n<html lang="en">\n<head>\n    <title>Site Maintenance / St. Louis Fed<</title>\n    <link href="https://fon' |
+| banco_mundial | 279 | ✅ OK |
+| bcrp | 94 | ✅ OK |
+| comtrade | 0 | ⚠ Comtrade pe_imp_carbon_col_cif 202410 falló: 400 Client Error: Bad Request for url: https://comtradeapi.un.org/public/v1/preview/C/M/HS?reporterCode=604&partnerCode=170&cmdCode=270112&flowCode=M&period=202410%2C202411%2C<br>Comtrade pe_imp_carbon_col_cif 202510 falló: 400 Client Error: Bad Request for url: https://comtradeapi.un.org/public/v1/preview/C/M/HS?reporterCode=604&partnerCode=170&cmdCode=270112&flowCode=M&period=202510%2C202511%2C<br>Comtrade pe_imp_carbon_col_cif: sin registros (HTTP 400) {"error":"Maximum number of periods for preview is 1","details":null} |
+| investing | 0 | — sin archivos |
+| manual | 0 | — sin archivos |
+
 ## Frescura de datos por serie
 
 | Serie | Último mes |
