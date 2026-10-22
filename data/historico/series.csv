@@ -278,6 +278,54 @@ fecha,serie,valor,unidad,fuente,actualizado
 2026-07-01,carbon_bm_sudafrica_fob,96.3000,USD/t,Banco Mundial Pink Sheet,2026-10-22
 2026-08-01,carbon_bm_sudafrica_fob,96.8000,USD/t,Banco Mundial Pink Sheet,2026-10-22
 2026-09-01,carbon_bm_sudafrica_fob,98.2000,USD/t,Banco Mundial Pink Sheet,2026-10-22
+2024-10-01,co_exp_carbon_mundo_fob_usd_t,95.6354,USD/t,UN Comtrade (FOB),2026-10-22
+2024-11-01,co_exp_carbon_mundo_fob_usd_t,100.5086,USD/t,UN Comtrade (FOB),2026-10-22
+2024-12-01,co_exp_carbon_mundo_fob_usd_t,99.0043,USD/t,UN Comtrade (FOB),2026-10-22
+2025-01-01,co_exp_carbon_mundo_fob_usd_t,99.7901,USD/t,UN Comtrade (FOB),2026-10-22
+2025-02-01,co_exp_carbon_mundo_fob_usd_t,99.3517,USD/t,UN Comtrade (FOB),2026-10-22
+2025-03-01,co_exp_carbon_mundo_fob_usd_t,94.5598,USD/t,UN Comtrade (FOB),2026-10-22
+2025-04-01,co_exp_carbon_mundo_fob_usd_t,96.6910,USD/t,UN Comtrade (FOB),2026-10-22
+2025-05-01,co_exp_carbon_mundo_fob_usd_t,80.6255,USD/t,UN Comtrade (FOB),2026-10-22
+2025-06-01,co_exp_carbon_mundo_fob_usd_t,85.2297,USD/t,UN Comtrade (FOB),2026-10-22
+2025-07-01,co_exp_carbon_mundo_fob_usd_t,81.9701,USD/t,UN Comtrade (FOB),2026-10-22
+2025-08-01,co_exp_carbon_mundo_fob_usd_t,86.8035,USD/t,UN Comtrade (FOB),2026-10-22
+2025-09-01,co_exp_carbon_mundo_fob_usd_t,86.7383,USD/t,UN Comtrade (FOB),2026-10-22
+2025-10-01,co_exp_carbon_mundo_fob_usd_t,80.0929,USD/t,UN Comtrade (FOB),2026-10-22
+2025-11-01,co_exp_carbon_mundo_fob_usd_t,80.1758,USD/t,UN Comtrade (FOB),2026-10-22
+2025-12-01,co_exp_carbon_mundo_fob_usd_t,76.5202,USD/t,UN Comtrade (FOB),2026-10-22
+2026-01-01,co_exp_carbon_mundo_fob_usd_t,79.0927,USD/t,UN Comtrade (FOB),2026-10-22
+2026-02-01,co_exp_carbon_mundo_fob_usd_t,82.6296,USD/t,UN Comtrade (FOB),2026-10-22
+2026-03-01,co_exp_carbon_mundo_fob_usd_t,85.5221,USD/t,UN Comtrade (FOB),2026-10-22
+2026-04-01,co_exp_carbon_mundo_fob_usd_t,90.5925,USD/t,UN Comtrade (FOB),2026-10-22
+2024-10-01,co_exp_carbon_mundo_fob_vol_t,4219724.9970,t,UN Comtrade (FOB),2026-10-22
+2024-11-01,co_exp_carbon_mundo_fob_vol_t,6302605.7100,t,UN Comtrade (FOB),2026-10-22
+2024-12-01,co_exp_carbon_mundo_fob_vol_t,5068584.1200,t,UN Comtrade (FOB),2026-10-22
+2025-01-01,co_exp_carbon_mundo_fob_vol_t,2263192.7800,t,UN Comtrade (FOB),2026-10-22
+2025-02-01,co_exp_carbon_mundo_fob_vol_t,3886884.5600,t,UN Comtrade (FOB),2026-10-22
+2025-03-01,co_exp_carbon_mundo_fob_vol_t,1883944.8100,t,UN Comtrade (FOB),2026-10-22
+2025-04-01,co_exp_carbon_mundo_fob_vol_t,3706215.7700,t,UN Comtrade (FOB),2026-10-22
+2025-05-01,co_exp_carbon_mundo_fob_vol_t,5634579.7800,t,UN Comtrade (FOB),2026-10-22
+2025-06-01,co_exp_carbon_mundo_fob_vol_t,3957739.1390,t,UN Comtrade (FOB),2026-10-22
+2025-07-01,co_exp_carbon_mundo_fob_vol_t,4750619.6500,t,UN Comtrade (FOB),2026-10-22
+2025-08-01,co_exp_carbon_mundo_fob_vol_t,1879476.9400,t,UN Comtrade (FOB),2026-10-22
+2025-09-01,co_exp_carbon_mundo_fob_vol_t,5066712.1580,t,UN Comtrade (FOB),2026-10-22
+2025-10-01,co_exp_carbon_mundo_fob_vol_t,4725244.4650,t,UN Comtrade (FOB),2026-10-22
+2025-11-01,co_exp_carbon_mundo_fob_vol_t,4386635.2000,t,UN Comtrade (FOB),2026-10-22
+2025-12-01,co_exp_carbon_mundo_fob_vol_t,5654789.6800,t,UN Comtrade (FOB),2026-10-22
+2026-01-01,co_exp_carbon_mundo_fob_vol_t,3972741.7100,t,UN Comtrade (FOB),2026-10-22
+2026-02-01,co_exp_carbon_mundo_fob_vol_t,3828873.3800,t,UN Comtrade (FOB),2026-10-22
+2026-03-01,co_exp_carbon_mundo_fob_vol_t,4880990.8800,t,UN Comtrade (FOB),2026-10-22
+2026-04-01,co_exp_carbon_mundo_fob_vol_t,2679416.0000,t,UN Comtrade (FOB),2026-10-22
+2024-11-01,co_exp_carbon_pe_fob_usd_t,108.5000,USD/t,UN Comtrade (FOB),2026-10-22
+2025-04-01,co_exp_carbon_pe_fob_usd_t,82.0648,USD/t,UN Comtrade (FOB),2026-10-22
+2025-05-01,co_exp_carbon_pe_fob_usd_t,116.1000,USD/t,UN Comtrade (FOB),2026-10-22
+2025-08-01,co_exp_carbon_pe_fob_usd_t,103.8994,USD/t,UN Comtrade (FOB),2026-10-22
+2025-09-01,co_exp_carbon_pe_fob_usd_t,113.2000,USD/t,UN Comtrade (FOB),2026-10-22
+2024-11-01,co_exp_carbon_pe_fob_vol_t,36238.0000,t,UN Comtrade (FOB),2026-10-22
+2025-04-01,co_exp_carbon_pe_fob_vol_t,100186.4000,t,UN Comtrade (FOB),2026-10-22
+2025-05-01,co_exp_carbon_pe_fob_vol_t,33000.0000,t,UN Comtrade (FOB),2026-10-22
+2025-08-01,co_exp_carbon_pe_fob_vol_t,61622.4900,t,UN Comtrade (FOB),2026-10-22
+2025-09-01,co_exp_carbon_pe_fob_vol_t,36434.3700,t,UN Comtrade (FOB),2026-10-22
 2019-01-01,fx_pen_usd,3.3444,PEN por USD,BCRP PD04638PD,2026-10-22
 2019-02-01,fx_pen_usd,3.3219,PEN por USD,BCRP PD04638PD,2026-10-22
 2019-03-01,fx_pen_usd,3.3056,PEN por USD,BCRP PD04638PD,2026-10-22
@@ -372,3 +420,23 @@ fecha,serie,valor,unidad,fuente,actualizado
 2026-08-01,fx_pen_usd,3.3637,PEN por USD,BCRP PD04638PD,2026-10-22
 2026-09-01,fx_pen_usd,3.3797,PEN por USD,BCRP PD04638PD,2026-10-22
 2026-10-01,fx_pen_usd,3.4385,PEN por USD,BCRP PD04638PD,2026-10-22
+2024-10-01,pe_imp_carbon_col_cif_usd_t,135.5653,USD/t,UN Comtrade (CIF),2026-10-22
+2024-11-01,pe_imp_carbon_col_cif_usd_t,135.3814,USD/t,UN Comtrade (CIF),2026-10-22
+2025-01-01,pe_imp_carbon_col_cif_usd_t,138.3290,USD/t,UN Comtrade (CIF),2026-10-22
+2025-02-01,pe_imp_carbon_col_cif_usd_t,135.0445,USD/t,UN Comtrade (CIF),2026-10-22
+2025-03-01,pe_imp_carbon_col_cif_usd_t,140.9422,USD/t,UN Comtrade (CIF),2026-10-22
+2024-10-01,pe_imp_carbon_col_cif_vol_t,32885.9000,t,UN Comtrade (CIF),2026-10-22
+2024-11-01,pe_imp_carbon_col_cif_vol_t,32773.3000,t,UN Comtrade (CIF),2026-10-22
+2025-01-01,pe_imp_carbon_col_cif_vol_t,33165.9000,t,UN Comtrade (CIF),2026-10-22
+2025-02-01,pe_imp_carbon_col_cif_vol_t,34513.8000,t,UN Comtrade (CIF),2026-10-22
+2025-03-01,pe_imp_carbon_col_cif_vol_t,32983.1000,t,UN Comtrade (CIF),2026-10-22
+2024-10-01,pe_imp_carbon_mundo_cif_usd_t,135.5653,USD/t,UN Comtrade (CIF),2026-10-22
+2024-11-01,pe_imp_carbon_mundo_cif_usd_t,135.3814,USD/t,UN Comtrade (CIF),2026-10-22
+2025-01-01,pe_imp_carbon_mundo_cif_usd_t,138.3290,USD/t,UN Comtrade (CIF),2026-10-22
+2025-02-01,pe_imp_carbon_mundo_cif_usd_t,135.0445,USD/t,UN Comtrade (CIF),2026-10-22
+2025-03-01,pe_imp_carbon_mundo_cif_usd_t,140.9422,USD/t,UN Comtrade (CIF),2026-10-22
+2024-10-01,pe_imp_carbon_mundo_cif_vol_t,32885.9000,t,UN Comtrade (CIF),2026-10-22
+2024-11-01,pe_imp_carbon_mundo_cif_vol_t,32773.3000,t,UN Comtrade (CIF),2026-10-22
+2025-01-01,pe_imp_carbon_mundo_cif_vol_t,33165.9000,t,UN Comtrade (CIF),2026-10-22
+2025-02-01,pe_imp_carbon_mundo_cif_vol_t,34513.8000,t,UN Comtrade (CIF),2026-10-22
+2025-03-01,pe_imp_carbon_mundo_cif_vol_t,32983.1000,t,UN Comtrade (CIF),2026-10-22

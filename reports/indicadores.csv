@@ -1,14 +1,18 @@
 serie,descripcion,mes,ultimo,var_mensual_pct,var_anual_pct,prom_3m,prom_12m,min_24m,max_24m,zscore_24m
 carbon_newcastle_fob,Newcastle FOB (USD/t),2026-09,147.1000,8.8018,38.3819,138.0667,126.2583,98.6000,147.1000,1.6838
 carbon_api4_fob_rb,API4 FOB Richards Bay (USD/t),2026-09,98.2000,1.4463,6.3922,97.1000,93.9750,90.6000,106.8000,0.3828
-carbon_col_fob,"Colombia FOB, spec contrato (USD/t)",2026-09,129.4480,8.8018,38.3819,121.4987,111.1073,86.7680,129.4480,1.6838
-carbon_flete,Flete Colombia→Conchán (USD/t),2026-09,28.4557,11.9426,27.5617,26.1098,24.6778,21.5076,28.8471,2.1782
-carbon_cif,CIF Conchán (USD/t),2026-09,158.1406,9.3547,36.2985,147.8299,135.9888,109.1946,158.1406,1.8144
-carbon_landed,Puesto en planta (USD/t),2026-09,170.1941,8.6678,33.0355,159.8473,147.9648,121.0768,170.1941,1.8144
-carbon_landed_pen,Puesto en planta (PEN/t),2026-09,575.2050,9.1847,28.3639,540.4952,502.6649,432.2454,618.4122,1.3017
-carbon_usd_gj,Puesto en planta (USD/GJ),2026-09,6.7750,8.6678,33.0355,6.3631,5.8901,4.8198,6.7750,1.8144
+carbon_col_fob,"Colombia FOB, spec contrato (USD/t)",2026-09,106.3809,8.8018,-6.0239,99.8481,89.4447,76.5202,116.1000,1.1006
+carbon_flete,Flete Colombia→Conchán (USD/t),2026-09,32.9301,11.9426,27.5617,30.2153,28.5582,24.8894,33.3830,2.1782
+carbon_cif,CIF Conchán (USD/t),2026-09,139.5200,9.5282,0.2129,130.2586,118.1798,101.5617,141.4675,1.4796
+carbon_landed,Puesto en planta (USD/t),2026-09,151.5084,8.7417,0.1967,142.2145,130.0935,113.4172,153.4626,1.4796
+carbon_landed_pen,Puesto en planta (PEN/t),2026-09,512.0528,9.2590,-3.3217,480.8724,441.8952,381.9097,561.7653,0.7730
+carbon_usd_gj,Puesto en planta (USD/GJ),2026-09,6.0312,8.7417,0.1967,5.6612,5.1787,4.5149,6.1090,1.4796
+carbon_cif_comtrade,CIF Perú desde Colombia — Comtrade (USD/t),2025-03,140.9422,4.3672,,138.1052,137.0525,135.0445,140.9422,
+pe_imp_carbon_mundo_cif,CIF Perú desde todo origen — Comtrade (USD/t),2025-03,140.9422,4.3672,,138.1052,137.0525,135.0445,140.9422,
 brent,Brent (USD/bbl),2026-09,116.8000,28.4928,71.7647,97.0333,86.4167,62.7000,120.4000,2.2416
 fx_pen_usd,Tipo de cambio (PEN/USD),2026-09,3.3797,0.4757,-3.5116,3.3815,3.3957,3.3568,3.7800,-0.9821
-ratio_col_newcastle,Colombia FOB / Newcastle,2026-09,0.8800,0.0000,0.0000,0.8800,0.8800,0.8800,0.8800,1.8127
-paridad_carbon_brent,Carbón vs Brent (USD/GJ ÷ USD/GJ),2026-09,0.2700,-15.3246,-19.4352,0.3093,0.3235,0.2331,0.4152,-1.5083
-flete_share_carbon,Flete / CIF,2026-09,0.1799,2.3666,-6.4100,0.1765,0.1816,0.1534,0.2039,-0.2389
+ratio_col_newcastle,Colombia FOB / Newcastle,2026-09,0.7232,0.0000,-32.0893,0.7232,0.7092,0.6170,1.1121,-0.4925
+paridad_carbon_brent,Carbón vs Brent (USD/GJ ÷ USD/GJ),2026-09,0.2219,-15.3246,-45.2879,0.2542,0.2612,0.1833,0.4406,-1.3019
+flete_share_carbon,Flete / CIF,2026-09,0.2360,2.2044,27.2906,0.2318,0.2419,0.1778,0.2689,0.3734
+carbon_vs_cif_comtrade,CIF modelo / CIF Comtrade Perú,2025-03,0.8608,-8.1397,,0.9069,0.9258,0.8608,1.0015,
+share_colombia_import_pe,Participación de Colombia en importaciones de Perú (t),2025-03,1.0000,0.0000,,1.0000,1.0000,1.0000,1.0000,
