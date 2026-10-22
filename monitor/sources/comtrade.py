@@ -94,6 +94,7 @@ def fetch(months: int = 24) -> pd.DataFrame:
     out = []
     for serie, q in QUERIES.items():
         records: list[dict] = []
+        r = None
         for chunk in chunks:
             params = {
                 "reporterCode": q["reporter"], "partnerCode": q["partner"], "cmdCode": q["cmd"],
@@ -103,9 +104,15 @@ def fetch(months: int = 24) -> pd.DataFrame:
             try:
                 r = s.get(url, params=params, timeout=90)
                 r.raise_for_status()
-                records += r.json().get("data") or []
+                payload = r.json()
+                if not payload.get("data") and payload.get("error"):
+                    log.warning("Comtrade %s %s: %s", serie, chunk[0], str(payload["error"])[:200])
+                records += payload.get("data") or []
             except Exception as e:
                 log.warning("Comtrade %s %s falló: %s", serie, chunk[0], e)
             time.sleep(1.5)   # respetar el límite de la API pública
+        if not records:
+            log.warning("Comtrade %s: sin registros (HTTP %s) %s", serie,
+                        getattr(r, "status_code", "?"), getattr(r, "text", "")[:200].replace("\n", " "))
         out.append(parse_records(records, serie, q["flow"]))
     return pd.concat(out, ignore_index=True) if out else frame([])

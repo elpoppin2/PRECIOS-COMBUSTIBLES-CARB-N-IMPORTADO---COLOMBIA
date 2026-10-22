@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import os
 from datetime import date
@@ -18,6 +19,16 @@ from .config import HIST_PATH, MANUAL_DIR, REPORTS_DIR, ROOT, load_config
 from .sources import bcrp, comtrade, fred, investing, manual, worldbank
 
 log = logging.getLogger("monitor")
+STATUS_PATH = REPORTS_DIR / "estado_fuentes.json"
+
+
+class _WarningCollector(logging.Handler):
+    def __init__(self):
+        super().__init__(logging.WARNING)
+        self.messages: list[str] = []
+
+    def emit(self, record):
+        self.messages.append(record.getMessage())
 
 
 def update(cfg: dict) -> pd.DataFrame:
@@ -31,13 +42,22 @@ def update(cfg: dict) -> pd.DataFrame:
         ("investing", lambda: investing.fetch(ROOT / cfg["investing"]["carpeta"], cfg["investing"]["series"])),
         ("manual", lambda: manual.fetch(MANUAL_DIR, cfg)),
     ]
-    frames = []
+    frames, status = [], []
     for name, fn in steps:
         if not f.get(name, True):
             continue
-        df = fn()
+        collector = _WarningCollector()
+        log.addHandler(collector)
+        try:
+            df = fn()
+        finally:
+            log.removeHandler(collector)
         log.info("%-14s %5d observaciones", name, len(df))
+        status.append({"fuente": name, "observaciones": len(df),
+                       "series": sorted(df["serie"].unique().tolist()), "avisos": collector.messages[:8]})
         frames.append(df)
+    REPORTS_DIR.mkdir(exist_ok=True)
+    STATUS_PATH.write_text(json.dumps(status, ensure_ascii=False, indent=1), encoding="utf-8")
     new = pd.concat([d for d in frames if not d.empty], ignore_index=True) if any(
         not d.empty for d in frames) else pd.DataFrame(columns=store.COLUMNS)
     return store.upsert(HIST_PATH, new)
@@ -47,7 +67,8 @@ def build_report(cfg: dict, use_agent: bool = True) -> analytics.Result:
     res = analytics.compute(store.wide(store.load(HIST_PATH)), cfg)
     text = agent.commentary(res, cfg) if use_agent else None
     files = report.charts(res, REPORTS_DIR / "graficos")
-    md = report.render(res, cfg, text, files)
+    status = json.loads(STATUS_PATH.read_text(encoding="utf-8")) if STATUS_PATH.exists() else None
+    md = report.render(res, cfg, text, files, status)
     REPORTS_DIR.mkdir(exist_ok=True)
     (REPORTS_DIR / "ultimo_reporte.md").write_text(md, encoding="utf-8")
     (REPORTS_DIR / "historial").mkdir(exist_ok=True)

@@ -132,6 +132,7 @@ Secretos opcionales (*Settings → Secrets and variables → Actions*):
 | Secreto | Uso |
 |---|---|
 | `ANTHROPIC_API_KEY` | Agente analista con Claude (comentario + búsqueda de noticias) |
+| `FRED_API_KEY` | Clave gratuita de [fredaccount.stlouisfed.org](https://fredaccount.stlouisfed.org) si la descarga pública de FRED es bloqueada |
 | `COMTRADE_API_KEY` | Clave gratuita de [comtradedeveloper.un.org](https://comtradedeveloper.un.org) para más cuota |
 | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Resumen y alertas por Telegram |
 

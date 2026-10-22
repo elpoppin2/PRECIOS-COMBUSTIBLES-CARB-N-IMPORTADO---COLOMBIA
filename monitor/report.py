@@ -87,7 +87,19 @@ def charts(res: Result, out_dir: Path) -> list[str]:
     return files
 
 
-def render(res: Result, cfg: dict, commentary: str | None, chart_files: list[str]) -> str:
+def _status_section(status: list[dict]) -> str:
+    lines = ["## Estado de las fuentes (última descarga)\n", "| Fuente | Observaciones | Estado |", "|---|---:|---|"]
+    for s in status:
+        if s["avisos"]:
+            state = "⚠ " + "<br>".join(a.replace("|", "/")[:220] for a in s["avisos"][:3])
+        else:
+            state = "✅ OK" if s["observaciones"] else "— sin archivos"
+        lines.append(f"| {s['fuente']} | {s['observaciones']} | {state} |")
+    return "\n".join(lines) + "\n"
+
+
+def render(res: Result, cfg: dict, commentary: str | None, chart_files: list[str],
+           status: list[dict] | None = None) -> str:
     today = date.today().isoformat()
     meta = res.meta
     out = ["# Monitor de carbón importado — Puerto Conchán\n",
@@ -140,6 +152,8 @@ def render(res: Result, cfg: dict, commentary: str | None, chart_files: list[str
         out.append("## Gráficos (últimos 36 meses)\n")
         out += [f"![{f}](graficos/{f})\n" for f in chart_files]
 
+    if status:
+        out.append(_status_section(status))
     out.append("## Frescura de datos por serie\n")
     out.append("| Serie | Último mes |\n|---|---|")
     out += [f"| `{k}` | {v} |" for k, v in sorted(meta.get("ultimo_dato_por_serie", {}).items())]

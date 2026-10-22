@@ -16,6 +16,17 @@ def test_fred_parses_and_skips_missing():
     assert set(df["serie"]) == {"carbon_newcastle_fob"}
 
 
+def test_fred_rejects_html_response():
+    with pytest.raises(ValueError):
+        fred.parse_csv("<html>blocked</html>", "PCOALAUUSDM", "carbon_newcastle_fob", "USD/t")
+
+
+def test_fred_api_json():
+    payload = {"observations": [{"date": "2026-08-01", "value": "121.4"}, {"date": "2026-09-01", "value": "."}]}
+    df = fred.parse_api_json(payload, "PCOALAUUSDM", "carbon_newcastle_fob", "USD/t")
+    assert list(df["valor"]) == [121.4]
+
+
 def test_fred_legacy_date_header():
     df = fred.parse_csv("DATE,EXJPUS\n2026-01-01,150.5\n", "EXJPUS", "fx_jpy_usd", "JPY por USD")
     assert df["valor"].iloc[0] == 150.5

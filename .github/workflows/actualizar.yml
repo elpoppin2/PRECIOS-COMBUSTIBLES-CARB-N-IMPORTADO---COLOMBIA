@@ -42,6 +42,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           COMTRADE_API_KEY: ${{ secrets.COMTRADE_API_KEY }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           REPORT_URL: ${{ github.server_url }}/${{ github.repository }}/blob/main/reports/ultimo_reporte.md
