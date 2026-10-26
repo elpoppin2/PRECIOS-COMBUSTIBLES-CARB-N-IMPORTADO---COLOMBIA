@@ -1,60 +1,61 @@
 # Monitor de carbón importado — Puerto Conchán
 
-_Actualizado: 2026-10-22 · Último mes con índice de referencia: 2026-09_
+_Actualizado: 2026-10-26 · Último mes con índice de referencia: 2026-09_
 
 ## Alertas
 
-- ▲ Newcastle FOB (USD/t): +8.8% m/m (147.10, 2026-09)
-- ▲ Colombia FOB, spec contrato (USD/t): +8.8% m/m (106.38, 2026-09)
-- ▲ Flete Colombia→Conchán (USD/t): +11.9% m/m (32.93, 2026-09)
-- ⚠ Flete Colombia→Conchán (USD/t) fuera de rango histórico: z=+2.2 vs 24 meses
-- ▲ Puesto en planta (USD/t): +8.7% m/m (151.51, 2026-09)
-- ▲ Brent (USD/bbl): +28.5% m/m (116.80, 2026-09)
+- ▲ Newcastle FOB (USD/t): +9.5% m/m (153.84, 2026-09)
+- ▲ Colombia FOB, spec contrato (USD/t): +9.5% m/m (107.64, 2026-09)
+- ▲ Flete Colombia→Conchán (USD/t): +10.7% m/m (32.60, 2026-09)
+- ⚠ Flete Colombia→Conchán (USD/t) fuera de rango histórico: z=+2.1 vs 24 meses
+- ▲ Puesto en planta (USD/t): +9.0% m/m (152.44, 2026-09)
+- ▲ Brent (USD/bbl): +25.3% m/m (114.16, 2026-09)
 - ⚠ Brent (USD/bbl) fuera de rango histórico: z=+2.2 vs 24 meses
 
 ## Carbón Colombia puesto en planta
 
 | Concepto | Valor |
 |---|---:|
-| FOB Colombia, spec contrato (USD/t) | 106.38 |
-| Flete Colombia→Conchán (USD/t) | 32.93 |
-| CIF Conchán (USD/t) | 139.52 |
-| Puesto en planta (USD/t) | 151.51 |
-| Puesto en planta (PEN/t) | 512.05 |
-| Puesto en planta (USD/GJ) | 6.03 |
-| Puesto en planta (USD/Gcal) | 25.25 |
-| IGV a pagar en aduana, crédito fiscal (USD/t) | 25.11 |
-| Costo anual estimado (MUSD) | 37.9 |
+| FOB Colombia, spec contrato (USD/t) | 107.64 |
+| Flete Colombia→Conchán (USD/t) | 32.60 |
+| CIF Conchán (USD/t) | 140.45 |
+| Puesto en planta (USD/t) | 152.44 |
+| Puesto en planta (PEN/t) | 515.21 |
+| Puesto en planta (USD/GJ) | 6.07 |
+| Puesto en planta (USD/Gcal) | 25.41 |
+| IGV a pagar en aduana, crédito fiscal (USD/t) | 25.28 |
+| Costo anual estimado (MUSD) | 38.1 |
 | Presupuesto puesto en planta (USD/t) | 160.00 |
 | Fuente del FOB | estimado: Newcastle × ratio Colombia/Newcastle |
 
-Spec 6000 kcal/kg NAR. Ratio Colombia/API2: 0.850 (valor por defecto); Colombia/Newcastle: 0.723 (calibrado con Comtrade). Factor de calibración del flete: 1.16.
+Spec 6000 kcal/kg NAR. Ratio Colombia/API2: 0.850 (valor por defecto); Colombia/Newcastle: 0.700 (calibrado con Comtrade). Factor de calibración del flete: 1.16.
 
 ## Precios y costos
 
 | Indicador | Mes | Último | m/m | a/a | Prom. 3m | Prom. 12m | Rango 24m | z 24m |
 |---|---|---:|---:|---:|---:|---:|---|---:|
-| Newcastle FOB (USD/t) | 2026-09 | **147.10** | +8.8% | +38.4% | 138.07 | 126.26 | 98.60 – 147.10 | 1.7 |
+| Newcastle FOB (USD/t) | 2026-09 | **153.84** | +9.5% | +36.7% | 144.91 | 132.45 | 101.14 – 153.84 | 1.6 |
 | API4 FOB Richards Bay (USD/t) | 2026-09 | **98.20** | +1.4% | +6.4% | 97.10 | 93.97 | 90.60 – 106.80 | 0.4 |
-| Colombia FOB, spec contrato (USD/t) | 2026-09 | **106.38** | +8.8% | -6.0% | 99.85 | 89.44 | 76.52 – 116.10 | 1.1 |
-| Flete Colombia→Conchán (USD/t) | 2026-09 | **32.93** | +11.9% | +27.6% | 30.22 | 28.56 | 24.89 – 33.38 | 2.2 |
-| CIF Conchán (USD/t) | 2026-09 | **139.52** | +9.5% | +0.2% | 130.26 | 118.18 | 101.56 – 141.47 | 1.5 |
-| Puesto en planta (USD/t) | 2026-09 | **151.51** | +8.7% | +0.2% | 142.21 | 130.09 | 113.42 – 153.46 | 1.5 |
-| Puesto en planta (PEN/t) | 2026-09 | **512.05** | +9.3% | -3.3% | 480.87 | 441.90 | 381.91 – 561.77 | 0.8 |
-| Puesto en planta (USD/GJ) | 2026-09 | **6.03** | +8.7% | +0.2% | 5.66 | 5.18 | 4.51 – 6.11 | 1.5 |
+| Colombia FOB, spec contrato (USD/t) | 2026-09 | **107.64** | +9.5% | -4.9% | 101.39 | 90.25 | 76.52 – 116.10 | 1.1 |
+| Flete Colombia→Conchán (USD/t) | 2026-09 | **32.60** | +10.7% | +26.3% | 30.14 | 28.49 | 24.87 – 33.00 | 2.1 |
+| CIF Conchán (USD/t) | 2026-09 | **140.45** | +9.8% | +0.9% | 131.73 | 118.92 | 101.54 – 141.52 | 1.5 |
+| Puesto en planta (USD/t) | 2026-09 | **152.44** | +9.0% | +0.8% | 143.69 | 130.84 | 113.40 – 153.51 | 1.5 |
+| Puesto en planta (PEN/t) | 2026-09 | **515.21** | +9.5% | -2.7% | 485.88 | 444.42 | 381.84 – 561.96 | 0.8 |
+| Puesto en planta (USD/GJ) | 2026-09 | **6.07** | +9.0% | +0.8% | 5.72 | 5.21 | 4.51 – 6.11 | 1.5 |
 | CIF Perú desde Colombia — Comtrade (USD/t) | 2025-03 | **140.94** | +4.4% | — | 138.11 | 137.05 | 135.04 – 140.94 | — |
 | CIF Perú desde todo origen — Comtrade (USD/t) | 2025-03 | **140.94** | +4.4% | — | 138.11 | 137.05 | 135.04 – 140.94 | — |
-| Brent (USD/bbl) | 2026-09 | **116.80** | +28.5% | +71.8% | 97.03 | 86.42 | 62.70 – 120.40 | 2.2 |
+| Brent (USD/bbl) | 2026-09 | **114.16** | +25.3% | +67.9% | 96.33 | 85.86 | 62.54 – 117.29 | 2.2 |
 | Tipo de cambio (PEN/USD) | 2026-09 | **3.380** | +0.5% | -3.5% | 3.382 | 3.396 | 3.357 – 3.780 | -1.0 |
+| Tipo de cambio (COP/USD) | 2026-09 | **3,185.25** | +1.7% | -18.7% | 3,191.78 | 3,578.33 | 3,130.92 – 4,412.06 | -1.9 |
 
 ## Ratios
 
 | Indicador | Mes | Último | m/m | a/a | Prom. 3m | Prom. 12m | Rango 24m | z 24m |
 |---|---|---:|---:|---:|---:|---:|---|---:|
-| Colombia FOB / Newcastle | 2026-09 | **0.723** | +0.0% | -32.1% | 0.723 | 0.709 | 0.617 – 1.112 | -0.5 |
-| Carbón vs Brent (USD/GJ ÷ USD/GJ) | 2026-09 | **0.222** | -15.3% | -45.3% | 0.254 | 0.261 | 0.183 – 0.441 | -1.3 |
-| Flete / CIF | 2026-09 | **0.236** | +2.2% | +27.3% | 0.232 | 0.242 | 0.178 – 0.269 | 0.4 |
-| CIF modelo / CIF Comtrade Perú | 2025-03 | **0.861** | -8.1% | — | 0.907 | 0.926 | 0.861 – 1.002 | — |
+| Colombia FOB / Newcastle | 2026-09 | **0.700** | +0.0% | -30.4% | 0.700 | 0.682 | 0.611 – 1.116 | -0.4 |
+| Carbón vs Brent (USD/GJ ÷ USD/GJ) | 2026-09 | **0.230** | -12.6% | -43.4% | 0.259 | 0.264 | 0.188 – 0.439 | -1.2 |
+| Flete / CIF | 2026-09 | **0.232** | +0.8% | +25.2% | 0.229 | 0.240 | 0.178 – 0.267 | 0.2 |
+| CIF modelo / CIF Comtrade Perú | 2025-03 | **0.861** | -8.2% | — | 0.907 | 0.926 | 0.861 – 1.002 | — |
 | Participación de Colombia en importaciones de Perú (t) | 2025-03 | **1.000** | +0.0% | — | 1.000 | 1.000 | 1.000 – 1.000 | — |
 
 ## Gráficos (últimos 36 meses)
@@ -71,7 +72,7 @@ Spec 6000 kcal/kg NAR. Ratio Colombia/API2: 0.850 (valor por defecto); Colombia/
 
 | Fuente | Observaciones | Estado |
 |---|---:|---|
-| fred | 0 | ⚠ FRED PCOALAUUSDM falló: respuesta inesperada: '<!doctype html>\n<html lang="en">\n<head>\n    <title>Site Maintenance / St. Louis Fed<</title>\n    <link href="https://fon'<br>FRED MCOILBRENTEU falló: respuesta inesperada: '<!doctype html>\n<html lang="en">\n<head>\n    <title>Site Maintenance / St. Louis Fed<</title>\n    <link href="https://fon'<br>FRED COLCCUSMA02STM falló: respuesta inesperada: '<!doctype html>\n<html lang="en">\n<head>\n    <title>Site Maintenance / St. Louis Fed<</title>\n    <link href="https://fon' |
+| fred | 279 | ✅ OK |
 | banco_mundial | 279 | ✅ OK |
 | bcrp | 94 | ✅ OK |
 | comtrade | 68 | ✅ OK |
@@ -82,13 +83,16 @@ Spec 6000 kcal/kg NAR. Ratio Colombia/API2: 0.850 (valor por defecto); Colombia/
 
 | Serie | Último mes |
 |---|---|
+| `brent` | 2026-09 |
 | `brent_bm` | 2026-09 |
 | `carbon_bm_australia_fob` | 2026-09 |
 | `carbon_bm_sudafrica_fob` | 2026-09 |
+| `carbon_newcastle_fob` | 2026-09 |
 | `co_exp_carbon_mundo_fob_usd_t` | 2026-04 |
 | `co_exp_carbon_mundo_fob_vol_t` | 2026-04 |
 | `co_exp_carbon_pe_fob_usd_t` | 2025-09 |
 | `co_exp_carbon_pe_fob_vol_t` | 2025-09 |
+| `fx_cop_usd` | 2026-09 |
 | `fx_pen_usd` | 2026-10 |
 | `pe_imp_carbon_col_cif_usd_t` | 2025-03 |
 | `pe_imp_carbon_col_cif_vol_t` | 2025-03 |

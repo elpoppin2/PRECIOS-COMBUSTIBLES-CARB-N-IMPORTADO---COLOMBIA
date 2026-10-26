@@ -1,13 +1,13 @@
 [
  {
   "fuente": "fred",
-  "observaciones": 0,
-  "series": [],
-  "avisos": [
-   "FRED PCOALAUUSDM falló: respuesta inesperada: '<!doctype html>\\n<html lang=\"en\">\\n<head>\\n    <title>Site Maintenance | St. Louis Fed<</title>\\n    <link href=\"https://fon'",
-   "FRED MCOILBRENTEU falló: respuesta inesperada: '<!doctype html>\\n<html lang=\"en\">\\n<head>\\n    <title>Site Maintenance | St. Louis Fed<</title>\\n    <link href=\"https://fon'",
-   "FRED COLCCUSMA02STM falló: respuesta inesperada: '<!doctype html>\\n<html lang=\"en\">\\n<head>\\n    <title>Site Maintenance | St. Louis Fed<</title>\\n    <link href=\"https://fon'"
-  ]
+  "observaciones": 279,
+  "series": [
+   "brent",
+   "carbon_newcastle_fob",
+   "fx_cop_usd"
+  ],
+  "avisos": []
  },
  {
   "fuente": "banco_mundial",
