@@ -1,6 +1,6 @@
 # Monitor de carbón importado — Puerto Conchán
 
-_Actualizado: 2026-10-26 · Último mes con índice de referencia: 2026-09_
+_Actualizado: 2026-11-02 · Último mes con índice de referencia: 2026-09_
 
 ## Alertas
 
@@ -75,7 +75,7 @@ Spec 6000 kcal/kg NAR. Ratio Colombia/API2: 0.850 (valor por defecto); Colombia/
 | fred | 279 | ✅ OK |
 | banco_mundial | 279 | ✅ OK |
 | bcrp | 94 | ✅ OK |
-| comtrade | 68 | ✅ OK |
+| comtrade | 62 | ✅ OK |
 | investing | 0 | — sin archivos |
 | manual | 0 | — sin archivos |
 
