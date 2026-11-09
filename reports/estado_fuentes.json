@@ -1,7 +1,7 @@
 [
  {
   "fuente": "fred",
-  "observaciones": 279,
+  "observaciones": 280,
   "series": [
    "brent",
    "carbon_newcastle_fob",
@@ -11,7 +11,7 @@
  },
  {
   "fuente": "banco_mundial",
-  "observaciones": 279,
+  "observaciones": 282,
   "series": [
    "brent_bm",
    "carbon_bm_australia_fob",
@@ -21,7 +21,7 @@
  },
  {
   "fuente": "bcrp",
-  "observaciones": 94,
+  "observaciones": 95,
   "series": [
    "fx_pen_usd"
   ],
